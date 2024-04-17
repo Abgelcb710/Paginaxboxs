@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gif Centered</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+        }
+
+       .container {
+            position: relative;
+            top: 40px; /* cambia este valor para mover el GIF */
+            text-align: center;
+            width: 300px;
+            height: 200px;
+            margin: 0 auto;
+        }
+
+       .container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        h2 {
+            margin: 10px 0;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        form {
+            background-color: transparent;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="password"] {
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid white;
+            color: white;
+            padding: 5px;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
+        input[type="submit"] {
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #f0f0f0;
+        }
+
+        .message {
+            color: red;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://media.tenor.com/MktxDAnhUNcAAAAC/xbox-xbox-series-x.gif" alt="Gif">
+        <h2>Iniciar sesión</h2>
+        <form action="encuesta.html" method="get" onsubmit="return validateForm()">
+            <label for="username">Usuario</label>
+            <input type="text" id="username" name="username">
+            <div class="message" id="usernameMessage"></div>
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password">
+            <div class="message" id="passwordMessage"></div>
+            <input type="submit" value="Siguiente">
+        </form>
+    </div>
+
+    <script>
+        let attempts = 0;
+
+        function validateForm() {
+            attempts++;
+
+            if (attempts > 3) {
+                document.getElementById("passwordMessage").innerText = "Demasiados intentos fallidos. La página se cerrará.";
+                setTimeout(function() {
+                    window.close();
+                }, 3000); // Cierra la página después de 3 segundos
+                return false;
+            }
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (username !== "Angelcb720") {
+                document.getElementById("usernameMessage").innerText = "Usuario incorrecto.";
+            } else {
+                document.getElementById("usernameMessage").innerText = "";
+            }
+
+            if (password !== "1234") {
+                document.getElementById("passwordMessage").innerText = "Contraseña incorrecta.";
+            } else {
+                document.getElementById("passwordMessage").innerText = "";
+            }
+
+            if (username !== "Angelcb720" || password !== "1234") {
+                return false;
+            }
+        }
+    </script>
+</body>
+</html>
